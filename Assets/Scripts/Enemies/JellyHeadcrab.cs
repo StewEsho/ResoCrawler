@@ -21,6 +21,7 @@ public class JellyHeadcrab : MonoBehaviour
 	{
 		if (!isLunging && Vector2.Distance(transform.position, player.transform.position) < 7)
 		{
+			isLunging = true;
 			StartCoroutine(Lunge());
 		}
 	}
@@ -43,10 +44,9 @@ public class JellyHeadcrab : MonoBehaviour
 	IEnumerator Lunge()
 	{
 		yield return new WaitForSeconds(2);
-		isLunging = true;
 		Vector3 target = player.transform.position;
 		yield return StartCoroutine(RotateToPlayer(target));
-		float forceStrength = 300f * (Vector2.Distance(transform.position, player.transform.position) / 7);
+		float forceStrength = 300f * (Vector2.Distance(transform.position, target) / 7);
 		rb.AddForce(forceStrength * transform.right, ForceMode2D.Impulse);
 		isLunging = false;
 		Debug.Log("Done!");
