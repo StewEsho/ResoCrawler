@@ -7,24 +7,21 @@ public class JellyHeadcrab : MonoBehaviour
 {
 	private HealthManagement player;
 	private bool isLunging = false;
+	private Rigidbody2D rb;
 	
 	// Use this for initialization
 	void Start ()
 	{
+		rb = GetComponent<Rigidbody2D>();
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthManagement>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetKeyDown(KeyCode.G))
+		if (!isLunging && Vector2.Distance(transform.position, player.transform.position) < 7)
 		{
-			isLunging = true;
 			StartCoroutine(Lunge());
-		}
-		if (isLunging && Vector2.Distance(transform.position, player.transform.position) < 7)
-		{
-			
 		}
 	}
 
@@ -45,9 +42,12 @@ public class JellyHeadcrab : MonoBehaviour
 
 	IEnumerator Lunge()
 	{
+		isLunging = true;
 		Vector3 target = player.transform.position;
 		yield return StartCoroutine(RotateToPlayer(target));
-		yield return new WaitForSeconds(1.5f);
+		float forceStrength = 300f * (Vector2.Distance(transform.position, player.transform.position) / 7);
+		rb.AddForce(forceStrength * transform.right, ForceMode2D.Impulse);
+		yield return new WaitForSeconds(2);
 		isLunging = false;
 		Debug.Log("Done!");
 	}
