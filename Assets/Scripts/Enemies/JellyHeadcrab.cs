@@ -51,4 +51,14 @@ public class JellyHeadcrab : MonoBehaviour
 		isLunging = false;
 		Debug.Log("Done!");
 	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		Debug.Log("LOL");
+		if (other.transform.CompareTag("Player"))
+		{
+			//assuming there is only one player:
+			player.AdjustHealth(-3);
+		}
+	}
 }
