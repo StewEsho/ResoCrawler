@@ -119,6 +119,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ad91c72bd64c9f48a4a6e957a9f88b5, type: 2}
   - {fileID: 11400000, guid: b99e96c9cfad5b648a9f1ec37d0f7286, type: 2}
   - {fileID: 11400000, guid: 2f42a1d1d61943f48a3fc76acace9b0a, type: 2}
+  mapSize: 100
+  numberOfRooms: 20
 --- !u!19719996 &2113883505998118926
 TilemapCollider2D:
   m_ObjectHideFlags: 1
