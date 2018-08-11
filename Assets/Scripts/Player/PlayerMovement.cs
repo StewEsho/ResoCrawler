@@ -7,13 +7,13 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 2;
     private Rigidbody2D rb;
-    private SpriteRenderer sr;
+    private Transform sprite;
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>();
+        sprite = transform.Find("Sprite");
     }
 
     // Update is called once per frame
@@ -22,7 +22,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 dir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         dir = speed * Time.deltaTime * Vector2.ClampMagnitude(dir, 1);
         rb.MovePosition(transform.position + dir);
-        sr.flipX = dir.x < 0;
+        if (dir.x > 0)
+            sprite.eulerAngles = Vector3.zero;
+        else if (dir.x < 0)
+            sprite.eulerAngles = 180 * Vector3.up;
     }
 
     void LateUpdate()
