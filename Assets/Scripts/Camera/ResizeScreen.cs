@@ -27,6 +27,7 @@ public class ResizeScreen : MonoBehaviour
 	{
 		UNITS = units;
 		cam.orthographicSize = UNITS / 2.0f;
+		RESOLUTION = UNITS * PPU;
 		Screen.SetResolution(RESOLUTION, RESOLUTION, false);
 		Debug.Log(string.Format("Resized the resolution to {0}", RESOLUTION));
 	}

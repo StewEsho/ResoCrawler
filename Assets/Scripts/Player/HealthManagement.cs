@@ -12,7 +12,8 @@ public class HealthManagement : MonoBehaviour
 	void Start ()
 	{
 		health = maxHealth;
-		rs = Camera.main.GetComponent<ResizeScreen>();
+		rs = Camera.main.gameObject.GetComponent<ResizeScreen>();
+		Debug.Log(rs);
 		if (rs == null)
 		{
 			Debug.LogError("Camera does not have ResizeScreen Component");
@@ -25,7 +26,8 @@ public class HealthManagement : MonoBehaviour
 
 	public void AdjustHealth(int amount)
 	{
-		health -= amount;
+		health += amount;
+		Debug.Log("Health: " + health);
 		rs.SetUnits(health);
 	}
 

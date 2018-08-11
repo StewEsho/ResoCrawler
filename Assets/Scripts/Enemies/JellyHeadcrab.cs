@@ -37,17 +37,17 @@ public class JellyHeadcrab : MonoBehaviour
 			yield return null;
 		} while (Quaternion.Angle(transform.rotation, desiredRotation) > 1f);
 		Debug.Log("DONE ROTATING.");
-		yield return new WaitForSeconds(0.25f);
+		yield return new WaitForSeconds(0.5f);
 	}
 
 	IEnumerator Lunge()
 	{
+		yield return new WaitForSeconds(2);
 		isLunging = true;
 		Vector3 target = player.transform.position;
 		yield return StartCoroutine(RotateToPlayer(target));
 		float forceStrength = 300f * (Vector2.Distance(transform.position, player.transform.position) / 7);
 		rb.AddForce(forceStrength * transform.right, ForceMode2D.Impulse);
-		yield return new WaitForSeconds(2);
 		isLunging = false;
 		Debug.Log("Done!");
 	}
