@@ -31,7 +31,7 @@ public class ItemManagement : MonoBehaviour
 		{
 			if (nearChest)
 			{
-				AddToInventory(chest.Open(), inventory.Count < 1);
+				AddToInventory(chest.Open(), inventory.Count < 1 || chest.SwitchToItem);
 				nearChest = false;
 			}
 			else

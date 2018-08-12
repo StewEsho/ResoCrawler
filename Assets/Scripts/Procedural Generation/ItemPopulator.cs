@@ -11,6 +11,7 @@ public class ItemPopulator : MonoBehaviour
     [SerializeField] GameObject chest;
     [SerializeField] List<GameObject> chestWeapons; //One of each of these is put into a chest
     [SerializeField] List<GameObject> chestItems; //The rest of the chests are filled out with items from this list
+    [SerializeField] List<GameObject> enemies;
     public int ChestCount = 15;
 
     private int totalChests = 0;
@@ -26,7 +27,6 @@ public class ItemPopulator : MonoBehaviour
         List<GameObject> localChestWeapons = new List<GameObject>(chestWeapons);
         localRooms.RemoveAt(0); //Remove starting room.
         localRooms.Shuffle();
-        Debug.Log(localRooms);
         //Add the correct number of chests
         while (totalChests < ChestCount)
         {
@@ -56,9 +56,29 @@ public class ItemPopulator : MonoBehaviour
                     return; // no more items can be added, so no more chests are created.
                 }
             }
-                
-                totalChests++;
+            localRooms.Shuffle();
+            totalChests++;
         }
+    }
+
+    public void PopulateRoomsWithEnemies(List<Rect> rooms)
+    {
+        Debug.Log("Populating rooms with enemies!");
+        //copy lists since they will be mutated.
+        List<Rect> localRooms = new List<Rect>(rooms);
+        localRooms.RemoveAt(0); //Remove starting room.
         localRooms.Shuffle();
+        foreach (Rect room in localRooms)
+        {
+            if (Random.value > 0.4) // 60% chance a room will have enemies
+            {
+                int enemyCount = Random.Range(1, 6); //1-5 enemies per room.
+                for (int i = 0; i < enemyCount; i++)
+                {
+                    int enemyIndex = Random.Range(0, enemies.Count);
+                    Instantiate(enemies[enemyIndex], room.RandomPoint(), Quaternion.identity);
+                }
+            }
+        }
     }
 }    

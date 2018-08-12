@@ -140,6 +140,8 @@ MonoBehaviour:
   - {fileID: 1953941189762336, guid: 69d6dcb6e514c1a4db17b06464f23be5, type: 2}
   - {fileID: 1058170194467850, guid: c1b70128d17369c4b9480fd0aab1f27c, type: 2}
   chestItems: []
+  enemies:
+  - {fileID: 1877306608818358, guid: 93c534b6977522b408408aeecd70e780, type: 2}
   ChestCount: 15
 --- !u!19719996 &2113883505998118926
 TilemapCollider2D:

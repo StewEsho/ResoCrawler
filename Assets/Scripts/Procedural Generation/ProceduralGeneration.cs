@@ -13,24 +13,27 @@ public class ProceduralGeneration : MonoBehaviour
     [SerializeField] private int mapSize;
     [SerializeField] private int numberOfRooms;
     private ItemPopulator itemPopulator;
+    private Tilemap background;
+    private Tilemap walls;
 
     // Use this for initialization
     void Start()
     {
-        Tilemap background = transform.Find("Background").gameObject.GetComponent<Tilemap>(); //messy but w/e
-        background.color = Random.ColorHSV(0, 1, 1, 1, 0.75f, 0.75f);
-        Tilemap walls = transform.Find("Walls").gameObject.GetComponent<Tilemap>();
+        background = transform.Find("Background").gameObject.GetComponent<Tilemap>(); //messy but w/e
+        walls = transform.Find("Walls").gameObject.GetComponent<Tilemap>();
         itemPopulator = GetComponent<ItemPopulator>();
-        GenerateMap(mapSize, numberOfRooms, background, walls);
+        GenerateMap(mapSize, numberOfRooms);
     }
 
-    public void GenerateMap(int size, int roomCount, Tilemap background, Tilemap walls)
+    public void GenerateMap(int size, int roomCount)
     {
+        background.color = Random.ColorHSV(0, 1, 1, 1, 0.75f, 0.75f); //Random color
         List<Rect> rooms = GenerateDungeonRooms(size, roomCount);
         Debug.Log(rooms[0]);
         int[,] map = CreateTilemapArray(size, rooms);
         rooms = PutCenterRoomFirst(rooms, size);
         itemPopulator.PopulateRoomsWithChests(rooms);
+        itemPopulator.PopulateRoomsWithEnemies(rooms);
         rooms.AddRange(ConnectRooms(rooms, map));
         map = CreateTilemapArray(size, rooms);
 
@@ -186,9 +189,9 @@ public class ProceduralGeneration : MonoBehaviour
             //Get Directions
             Vector2 center = room.center;
             newRooms.Add(NewRoom((int) (center.x + mapCenter.x) / 2, (int) center.y + 1,
-                (int) Mathf.Abs(center.x - mapCenter.x), 2, map.GetLength(0)));
+                (int) Mathf.Abs(center.x - mapCenter.x) + 1, 2, map.GetLength(0)));
             newRooms.Add(NewRoom((int) mapCenter.x + 1, (int) (center.y + mapCenter.y) / 2,
-                2, (int) Mathf.Abs(center.y - mapCenter.y), map.GetLength(0)));
+                2, (int) Mathf.Abs(center.y - mapCenter.y) + 1, map.GetLength(0)));
         }
 
         return newRooms;

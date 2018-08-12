@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212035044870446582}
   - component: {fileID: 95794004850582762}
   - component: {fileID: 82987643681825526}
-  - component: {fileID: 114997716763819032}
   m_Layer: 0
   m_Name: Item Get
   m_TagString: Untagged
@@ -90,7 +89,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
 --- !u!61 &61926211460094638
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -242,17 +241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   openedChestSprite: {fileID: 21300000, guid: 79c82272d168fdd45a7da77904c0a919, type: 3}
---- !u!114 &114997716763819032
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1115701171923986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d0a4f23729e7641934e03957a7344c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212035044870446582
 SpriteRenderer:
   m_ObjectHideFlags: 1

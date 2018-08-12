@@ -7,15 +7,15 @@ public class Chest : MonoBehaviour
 {
     [SerializeField] private GameObject item;
     [SerializeField] private Sprite openedChestSprite; //todo: probably better to use an animator, right? w/e
-    private bool isOpened = false;
-    private bool switchToItem = false;
-    private Collider2D col;
+    private bool isOpened;
+    private bool switchToItem;
+    private BoxCollider2D col;
     private Animator anim;
     private AudioSource audioSource;
 
     public void Start()
     {
-        col = GetComponent<Collider2D>();
+        col = GetComponent<BoxCollider2D>();
         anim = GetComponentInChildren<Animator>();
         audioSource = GetComponentInChildren<AudioSource>();
     }
@@ -30,6 +30,10 @@ public class Chest : MonoBehaviour
         this.item = item;
         transform.Find("Item Get").GetComponent<SpriteRenderer>().sprite =
             item.GetComponentInChildren<SpriteRenderer>().sprite;
+        if (item.GetComponentInChildren<Weapon>() != null)
+        {
+            switchToItem = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
