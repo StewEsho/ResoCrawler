@@ -141,6 +141,7 @@ MonoBehaviour:
   - {fileID: 1058170194467850, guid: c1b70128d17369c4b9480fd0aab1f27c, type: 2}
   chestItems:
   - {fileID: 1578204242577786, guid: e238e9f7fc511a944b229468eeb2cf40, type: 2}
+  - {fileID: 1578204242577786, guid: 80688197c522e234dbb6a0174984a43c, type: 2}
   enemies:
   - {fileID: 1877306608818358, guid: 93c534b6977522b408408aeecd70e780, type: 2}
   ChestCount: 15

@@ -11,6 +11,8 @@ public class HealthPotion : MonoBehaviour, IConsumable
 	void Start ()
 	{
 		potency += Random.Range(-5, 5);
+		GetComponentInChildren<SpriteRenderer>().color = Color.clear;
+		Destroy(gameObject, 5);
 	}
 
 	public void Consume(GameObject player)

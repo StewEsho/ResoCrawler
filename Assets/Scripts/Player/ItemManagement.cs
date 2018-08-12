@@ -78,7 +78,8 @@ public class ItemManagement : MonoBehaviour
 		} 
 		else if (item.GetComponentInChildren<IConsumable>() != null)
 		{
-			IConsumable consumable = item.GetComponentInChildren<IConsumable>();
+			GameObject realItem = Instantiate(item);
+			IConsumable consumable = realItem.GetComponentInChildren<IConsumable>();
 			consumable.Consume(transform.root.gameObject);
 		}
 	}
@@ -96,5 +97,20 @@ public class ItemManagement : MonoBehaviour
 			Destroy(item);
 		}
 		inventory.Clear();
+	}
+
+	public List<Weapon> GetEquippedWeapons()
+	{
+		List<Weapon> weapons = new List<Weapon>();
+		foreach (var item in inventory)
+		{
+			Weapon weaponScript = item.GetComponentInChildren<Weapon>();
+			if (weaponScript != null)
+			{
+				weapons.Add(weaponScript);
+			}
+		}
+
+		return weapons;
 	}
 }
