@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-
 	public int Damage = 3;
 	
 	void Start()
@@ -15,7 +14,7 @@ public class Bullet : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D other)
 	{
-		if (!other.transform.CompareTag("Player"))
+		if (!other.transform.CompareTag("Player") && !other.transform.CompareTag("Bullet"))
 			Destroy(gameObject);
 		if (other.transform.CompareTag("Enemy"))
 		{

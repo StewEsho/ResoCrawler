@@ -6,9 +6,11 @@ public abstract class Gun : MonoBehaviour
 {
 	private GameObject sprite;
 	private Animator anim;
+	protected float FireRate = 0.1f;
+	private bool canFire = true;
 
 	// Use this for initialization
-	void Start ()
+	protected void Start ()
 	{
 		sprite = transform.Find("Sprite").gameObject;
 		anim = sprite.GetComponent<Animator>();
@@ -16,12 +18,20 @@ public abstract class Gun : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (canFire && Input.GetButtonDown("Fire"))
 		{
 			anim.Play("Shoot");
+			StartCoroutine(RestBetweenFire());
 			Shoot();
 		}
 	}
 
 	protected abstract void Shoot();
+
+	IEnumerator RestBetweenFire()
+	{
+		canFire = false;
+		yield return new WaitForSeconds(FireRate);
+		canFire = true;
+	}
 }
