@@ -52,16 +52,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4618424700411794}
-  - component: {fileID: 114279895973122300}
   - component: {fileID: 61642502757528956}
   - component: {fileID: 82412697517167900}
+  - component: {fileID: 114041825896097784}
   m_Layer: 0
   m_Name: Broadsword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4550792144791510
 Transform:
   m_ObjectHideFlags: 1
@@ -241,7 +241,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114279895973122300
+--- !u!114 &114041825896097784
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,11 +249,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1953941189762336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a484926ddc12d9c41b66fbd2dbe84147, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ff2f714f81f0247ad820a36dddab3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SwingRate: 0.12
   Damage: 5
+  DamageVariance: 1
+  FireRate: 0.12
 --- !u!212 &212193434078237332
 SpriteRenderer:
   m_ObjectHideFlags: 1

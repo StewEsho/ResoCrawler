@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1070890108195992
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362e7d0399cce51479ece2715b97a0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRate: 0.66
+  Damage: 2
+  DamageVariance: 2
+  FireRate: 0.75
   Bullet: {fileID: 1462917650267376, guid: 48905b36527df194b97b2ce2a893d49e, type: 2}
 --- !u!212 &212105043155931646
 SpriteRenderer:

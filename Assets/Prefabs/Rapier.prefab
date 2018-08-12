@@ -53,15 +53,15 @@ GameObject:
   - component: {fileID: 4618424700411794}
   - component: {fileID: 60591814705121328}
   - component: {fileID: 95329001146092444}
-  - component: {fileID: 114786019322785868}
   - component: {fileID: 82872030910279328}
+  - component: {fileID: 114134483019232338}
   m_Layer: 0
   m_Name: Rapier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4550792144791510
 Transform:
   m_ObjectHideFlags: 1
@@ -244,7 +244,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114786019322785868
+--- !u!114 &114134483019232338
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,11 +252,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1953941189762336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc36756ef16c06f43b6f147762024076, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ff2f714f81f0247ad820a36dddab3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SwingRate: 0.2
   Damage: 7
+  DamageVariance: 1
+  FireRate: 0.2
 --- !u!212 &212193434078237332
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Pistol : Gun
 {
-    [SerializeField] public GameObject Bullet;
     
     protected override void Shoot()
     {
@@ -12,6 +11,7 @@ public class Pistol : Gun
         if (dir.sqrMagnitude < 0.01f)
             dir = transform.right;
         GameObject shot = Instantiate(Bullet, transform.position, Quaternion.identity);
+        shot.GetComponent<Bullet>().Damage = this.Damage;
         shot.GetComponent<Rigidbody2D>().AddForce(25 * dir, ForceMode2D.Impulse);
         Debug.Log("Pistol Shot");
     }

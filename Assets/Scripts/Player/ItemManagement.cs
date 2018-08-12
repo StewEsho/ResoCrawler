@@ -18,9 +18,10 @@ public class ItemManagement : MonoBehaviour
 		inventory = new List<GameObject>();
 		foreach (Transform child in transform)
 		{
+			child.gameObject.SetActive(false);
 			inventory.Add(child.gameObject);
-			EnableInventoryItem(index);
 		}
+		EnableInventoryItem(index);
 	}
 	
 	// Update is called once per frame
@@ -65,6 +66,7 @@ public class ItemManagement : MonoBehaviour
 	public void AddToInventory(GameObject item, bool switchToItem = false)
 	{
 		GameObject obj = Instantiate(item, transform);
+		obj.SetActive(false);
 		inventory.Add(obj);
 		if (switchToItem)
 		{
