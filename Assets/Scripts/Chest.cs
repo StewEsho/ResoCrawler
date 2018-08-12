@@ -6,6 +6,14 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
     [SerializeField] private GameObject item;
+    [SerializeField] private Sprite openedChestSprite; //todo: probably better to use an animator, right? w/e
+    private bool isOpened = false;
+    private bool switchToItem = false;
+
+    public bool SwitchToItem
+    {
+        get { return switchToItem; }
+    }
 
     public void SetItem(GameObject item)
     {
@@ -14,9 +22,26 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (!isOpened && other.CompareTag("Player"))
         {
-            Debug.Log("Player . . . ");
+            ItemManagement inventory = other.GetComponentInChildren<ItemManagement>();
+            inventory.AddChest(this);
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!isOpened && other.CompareTag("Player"))
+        {
+            ItemManagement inventory = other.GetComponentInChildren<ItemManagement>();
+            inventory.AddChest(null);
+        }
+    }
+
+    public GameObject Open()
+    {
+        GetComponentInChildren<SpriteRenderer>().sprite = openedChestSprite;
+        isOpened = true;
+        return item;
     }
 }

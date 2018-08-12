@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Broadsword : MonoBehaviour
+public class Broadsword : MonoBehaviour, IFireable
 {
 
 	private Collider2D col;
@@ -27,24 +27,22 @@ public class Broadsword : MonoBehaviour
 		anim = GetComponentInChildren<Animator>();
 		Debug.Log(anim);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (canAttack && Input.GetButtonDown("Fire"))
+
+	public IEnumerator Fire()
+	{
+		if (!canAttack)
+			yield return null;
+		else
 		{
 			canAttack = false;
-			StartCoroutine(Attack());
+			col.enabled = true;
+			anim.Play("Swing", -1, 0);
+			audioSource.Play();
+			yield return new WaitForSeconds(SwingRate);
+			canAttack = true;
+			yield return new WaitForSeconds(0.05f);
+			col.enabled = false;
 		}
-	}
-
-	IEnumerator Attack()
-	{
-		col.enabled = true;
-		anim.Play("Swing", -1, 0);
-		audioSource.Play();
-		yield return new WaitForSeconds(SwingRate);
-		col.enabled = false;
-		canAttack = true;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)

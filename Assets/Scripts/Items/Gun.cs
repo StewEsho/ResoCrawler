@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public abstract class Gun : MonoBehaviour
+public abstract class Gun : MonoBehaviour, IFireable
 {
 	private GameObject sprite;
 	private Animator anim;
@@ -23,24 +23,22 @@ public abstract class Gun : MonoBehaviour
 		anim = sprite.GetComponent<Animator>();
 		audioSource = GetComponent<AudioSource>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (canFire && Input.GetButtonDown("Fire"))
-		{
-			StartCoroutine(Fire());
-		}
-	}
 
 	protected abstract void Shoot();
 
-	IEnumerator Fire()
+	public IEnumerator Fire()
 	{
-		canFire = false;
-		anim.Play("Shoot", -1, 0);
-		audioSource.Play();
-		Shoot();
-		yield return new WaitForSeconds(FireRate);
-		canFire = true;
+		if (!canFire)
+			yield return null;
+		else
+		{
+			canFire = false;
+			anim.Play("Shoot", -1, 0);
+			audioSource.Play();
+			Shoot();
+			yield return new WaitForSeconds(FireRate);
+			canFire = true;
+		}
+		
 	}
 }

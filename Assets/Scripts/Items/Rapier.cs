@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Rapier : MonoBehaviour {
+public class Rapier : MonoBehaviour, IFireable {
 
 	private bool canAttack = true;
 	private Animator anim;
@@ -26,24 +26,24 @@ public class Rapier : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		Debug.Log(anim);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (canAttack && Input.GetButtonDown("Fire"))
-		{
-			StartCoroutine(Attack());
-		}
-	}
 
-	IEnumerator Attack()
+	public IEnumerator Fire()
 	{
-		col.enabled = true;
-		canAttack = false;
-		anim.Play("Stab", -1, 0);
-		audioSource.Play();
-		yield return new WaitForSeconds(SwingRate);
-		col.enabled = false;
-		canAttack = true;
+		if (!canAttack)
+		{
+			yield return null;
+		}
+		else
+		{
+			col.enabled = true;
+			canAttack = false;
+			anim.Play("Stab", -1, 0);
+			audioSource.Play();
+			yield return new WaitForSeconds(SwingRate);
+			canAttack = true;
+			yield return new WaitForSeconds(0.05f);
+			col.enabled = false;
+		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)

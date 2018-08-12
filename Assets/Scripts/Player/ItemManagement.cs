@@ -8,6 +8,8 @@ public class ItemManagement : MonoBehaviour
 
 	private List<GameObject> inventory;
 	private int index;
+	private bool nearChest = false;
+	private Chest chest;
 	
 	// Use this for initialization
 	void Start ()
@@ -24,7 +26,19 @@ public class ItemManagement : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetButtonDown("Next"))
+		if (Input.GetButtonDown("Fire"))
+		{
+			if (nearChest)
+			{
+				AddToInventory(chest.Open(), inventory.Count < 1);
+				nearChest = false;
+			}
+			else
+			{
+				StartCoroutine(inventory[index].GetComponent<IFireable>().Fire());
+			}
+		}
+		else if (Input.GetButtonDown("Next"))
 		{
 			EnableInventoryItem((int) Mathf.Repeat(index + 1, inventory.Count));
 		}
@@ -46,5 +60,22 @@ public class ItemManagement : MonoBehaviour
 		{
 			Debug.LogException(e);
 		}
+	}
+
+	public void AddToInventory(GameObject item, bool switchToItem = false)
+	{
+		GameObject obj = Instantiate(item, transform);
+		inventory.Add(obj);
+		if (switchToItem)
+		{
+			EnableInventoryItem(inventory.Count - 1);
+		}
+		Debug.Log(string.Format("Added {0} to player inventory", item));
+	}
+
+	public void AddChest(Chest chest)
+	{
+		this.chest = chest;
+		nearChest = chest != null;
 	}
 }
