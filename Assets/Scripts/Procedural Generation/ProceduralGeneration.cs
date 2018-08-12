@@ -34,7 +34,9 @@ public class ProceduralGeneration : MonoBehaviour
         rooms = PutCenterRoomFirst(rooms, size);
         itemPopulator.PopulateRoomsWithChests(rooms);
         itemPopulator.PopulateRoomsWithEnemies(rooms);
-        rooms.AddRange(ConnectRooms(rooms, map));
+        List<Rect> hallways = ConnectRooms(rooms, map);
+        itemPopulator.PopulateHallwaysWithDoors(rooms, hallways);
+        rooms.AddRange(hallways);
         map = CreateTilemapArray(size, rooms);
 
         //Render Map

@@ -9,10 +9,15 @@ using UnityEngine;
 public class ItemPopulator : MonoBehaviour
 {
     [SerializeField] GameObject chest;
+    [SerializeField] GameObject door;
+    [SerializeField] GameObject goal;
+    [SerializeField] GameObject key;
     [SerializeField] List<GameObject> chestWeapons; //One of each of these is put into a chest
     [SerializeField] List<GameObject> chestItems; //The rest of the chests are filled out with items from this list
     [SerializeField] List<GameObject> enemies;
     public int ChestCount = 15;
+    [HideInInspector] public int DoorCount;
+    private Rect firstRoom; //bad cod ik but w/e
 
     private int totalChests = 0;
 
@@ -25,6 +30,7 @@ public class ItemPopulator : MonoBehaviour
         //copy lists since they will be mutated.
         List<Rect> localRooms = new List<Rect>(rooms);
         List<GameObject> localChestWeapons = new List<GameObject>(chestWeapons);
+        firstRoom = localRooms[0];
         localRooms.RemoveAt(0); //Remove starting room.
         localRooms.Shuffle();
         //Add the correct number of chests
@@ -66,6 +72,7 @@ public class ItemPopulator : MonoBehaviour
         Debug.Log("Populating rooms with enemies!");
         //copy lists since they will be mutated.
         List<Rect> localRooms = new List<Rect>(rooms);
+        firstRoom = localRooms[0];
         localRooms.RemoveAt(0); //Remove starting room.
         localRooms.Shuffle();
         foreach (Rect room in localRooms)
@@ -79,6 +86,35 @@ public class ItemPopulator : MonoBehaviour
                     Instantiate(enemies[enemyIndex], room.RandomPoint(), Quaternion.identity);
                 }
             }
+        }
+    }
+
+    public void PopulateHallwaysWithDoors(List<Rect> rooms, List<Rect> hallways)
+    {
+        foreach (Rect hallway in hallways)
+        {
+            if (Random.value > 0.75f)
+            {
+                Vector2 pos = hallway.center;
+
+                Instantiate(door, pos, Quaternion.identity);
+                DoorCount++;
+            }
+        }
+
+        for (int i = 0; i < DoorCount; i++)
+        {
+            int index = Random.Range(0, rooms.Count);
+            GameObject newChest = Instantiate(chest, rooms[index].RandomPoint(), Quaternion.identity, transform);
+            newChest.GetComponent<Chest>().SetItem(key);
+        }
+    }
+
+    public void SpawnGoal()
+    {
+        if (DoorCount <= 0)
+        {
+            Instantiate(goal, firstRoom.center, Random.rotation);
         }
     }
 }    

@@ -134,6 +134,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chest: {fileID: 1658006342351368, guid: 60152d72c7f35ac4eac747d8be2aa35b, type: 2}
+  door: {fileID: 1334636236200388, guid: f2706c81b26748b41be930294ad3c8b5, type: 2}
+  goal: {fileID: 1654060345970708, guid: a06031c2e2ead44409fb826360b613e5, type: 2}
+  key: {fileID: 1075631717635898, guid: 00ca7ca353de305469ca9e2122f5e64c, type: 2}
   chestWeapons:
   - {fileID: 1953941189762336, guid: 4523bccdd15af094a8df800009241d76, type: 2}
   - {fileID: 1058170194467850, guid: 0e62cd650fbc2894594d4f0e6cdbee48, type: 2}
@@ -145,6 +148,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 1877306608818358, guid: 93c534b6977522b408408aeecd70e780, type: 2}
   ChestCount: 15
+  DoorCount: 0
 --- !u!19719996 &2113883505998118926
 TilemapCollider2D:
   m_ObjectHideFlags: 1

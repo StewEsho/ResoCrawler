@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemManagement : MonoBehaviour
 {
@@ -10,10 +11,13 @@ public class ItemManagement : MonoBehaviour
 	private int index;
 	private bool nearChest = false;
 	private Chest chest;
+	[HideInInspector] public int keyCount = 3;
+	[SerializeField] private Text keyCountText;
 	
 	// Use this for initialization
 	void Start ()
 	{
+		keyCount = 3;
 		index = 0;
 		inventory = new List<GameObject>();
 		foreach (Transform child in transform)
@@ -47,6 +51,8 @@ public class ItemManagement : MonoBehaviour
 		{
 			EnableInventoryItem((int) Mathf.Repeat(index - 1, inventory.Count));
 		}
+
+		keyCountText.text = keyCount.ToString();
 	}
 
 	private void EnableInventoryItem(int i)
@@ -81,6 +87,9 @@ public class ItemManagement : MonoBehaviour
 			GameObject realItem = Instantiate(item);
 			IConsumable consumable = realItem.GetComponentInChildren<IConsumable>();
 			consumable.Consume(transform.root.gameObject);
+		} else if (item.GetComponent<Key>() != null)
+		{
+			keyCount++;
 		}
 	}
 
