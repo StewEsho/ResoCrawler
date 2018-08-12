@@ -11,6 +11,11 @@ public abstract class Gun : MonoBehaviour
 	private bool canFire = true;
 	private AudioSource audioSource;
 
+	void OnDisable()
+	{
+		canFire = true;
+	}
+
 	// Use this for initialization
 	protected void Start ()
 	{

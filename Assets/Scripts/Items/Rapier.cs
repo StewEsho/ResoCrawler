@@ -12,6 +12,12 @@ public class Rapier : MonoBehaviour {
 	public int Damage = 6;
 	private AudioSource audioSource;
 
+	private void OnDisable()
+	{
+		col.enabled = false;
+		canAttack = true;
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
