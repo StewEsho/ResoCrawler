@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shotgun : Gun {
+public class Shotgun : Gun
+{
+    public GameObject Shell;
+    
     protected override void Shoot()
     {
         Vector2 dir = Vector2.ClampMagnitude(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")), 1);
@@ -15,6 +18,8 @@ public class Shotgun : Gun {
             shot.GetComponent<Bullet>().Damage = this.Damage;
             shot.GetComponent<Rigidbody2D>().AddForce(25 * bulletDir, ForceMode2D.Impulse);
         }
+
+        Instantiate(Shell, transform.position, Quaternion.identity);
         Debug.Log("SHOTGUN SHOT");
     }
 }
