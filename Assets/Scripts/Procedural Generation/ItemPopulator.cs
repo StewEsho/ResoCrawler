@@ -55,9 +55,9 @@ public class ItemPopulator : MonoBehaviour
                 {
                     return; // no more items can be added, so no more chests are created.
                 }
+                totalChests++;
             }
             localRooms.Shuffle();
-            totalChests++;
         }
     }
 

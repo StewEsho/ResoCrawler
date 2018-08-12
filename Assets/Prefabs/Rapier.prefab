@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4550792144791510}
   - component: {fileID: 212734705813919142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4762922509644514}
   - component: {fileID: 212193434078237332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Swoosh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 95329001146092444}
   - component: {fileID: 82872030910279328}
   - component: {fileID: 114134483019232338}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rapier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,6 +258,7 @@ MonoBehaviour:
   Damage: 7
   DamageVariance: 1
   FireRate: 0.2
+  DamageMultiplier: 0
 --- !u!212 &212193434078237332
 SpriteRenderer:
   m_ObjectHideFlags: 1

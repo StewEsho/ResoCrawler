@@ -15,7 +15,7 @@ public class Shotgun : Gun
         {
             Vector2 bulletDir = Quaternion.AngleAxis(Random.Range(-6, 6), Vector3.forward) * dir;
             GameObject shot = Instantiate(Bullet, transform.position, Quaternion.identity);
-            shot.GetComponent<Bullet>().Damage = this.Damage;
+            shot.GetComponent<Bullet>().Damage = (int) DamageMultiplier * this.Damage;
             shot.GetComponent<Rigidbody2D>().AddForce(25 * bulletDir, ForceMode2D.Impulse);
         }
 

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4550792144791510}
   - component: {fileID: 95289935298372956}
   - component: {fileID: 212734705813919142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4762922509644514}
   - component: {fileID: 212193434078237332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Swoosh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,9 +55,9 @@ GameObject:
   - component: {fileID: 61642502757528956}
   - component: {fileID: 82412697517167900}
   - component: {fileID: 114041825896097784}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Broadsword
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
   Damage: 5
   DamageVariance: 1
   FireRate: 0.12
+  DamageMultiplier: 0
 --- !u!212 &212193434078237332
 SpriteRenderer:
   m_ObjectHideFlags: 1

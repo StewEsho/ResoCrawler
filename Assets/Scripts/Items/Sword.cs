@@ -33,7 +33,7 @@ public class Sword : Weapon {
 	{
 		if (other.CompareTag("Enemy"))
 		{
-			other.GetComponent<Enemy>().AdjustHealth(-Damage);
+			other.GetComponent<Enemy>().AdjustHealth(- (int) (Damage * DamageMultiplier));
 		}
 	}
 }

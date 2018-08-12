@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 82416535652662352}
   m_Layer: 0
   m_Name: Pistol
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,6 +199,7 @@ MonoBehaviour:
   Damage: 4
   DamageVariance: 2
   FireRate: 0.25
+  DamageMultiplier: 0
   Bullet: {fileID: 1462917650267376, guid: 48905b36527df194b97b2ce2a893d49e, type: 2}
 --- !u!212 &212105043155931646
 SpriteRenderer:

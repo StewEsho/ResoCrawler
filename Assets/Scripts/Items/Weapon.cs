@@ -14,10 +14,12 @@ public abstract class Weapon : MonoBehaviour, IFireable
 	protected Animator Anim;
 	protected AudioSource AudioSource;
 	protected Collider2D Col;
+	[HideInInspector] public float DamageMultiplier = 1.0f;
 	
 	// Use this for initialization
 	void Start ()
 	{
+		DamageMultiplier = 1.0f;
 		Damage += Random.Range(-DamageVariance, DamageVariance);
 		Damage = Mathf.Max(Damage, 1);
 		Anim = GetComponentInChildren<Animator>();

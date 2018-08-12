@@ -65,14 +65,22 @@ public class ItemManagement : MonoBehaviour
 
 	public void AddToInventory(GameObject item, bool switchToItem = false)
 	{
-		GameObject obj = Instantiate(item, transform);
-		obj.SetActive(false);
-		inventory.Add(obj);
-		if (switchToItem)
+		if (item.GetComponentInChildren<Weapon>() != null)
 		{
-			EnableInventoryItem(inventory.Count - 1);
+			GameObject obj = Instantiate(item, transform);
+			obj.SetActive(false);
+			inventory.Add(obj);
+			if (switchToItem)
+			{
+				EnableInventoryItem(inventory.Count - 1);
+			}
+			Debug.Log(string.Format("Added {0} to player inventory", item));
+		} 
+		else if (item.GetComponentInChildren<IConsumable>() != null)
+		{
+			IConsumable consumable = item.GetComponentInChildren<IConsumable>();
+			consumable.Consume(transform.root.gameObject);
 		}
-		Debug.Log(string.Format("Added {0} to player inventory", item));
 	}
 
 	public void AddChest(Chest chest)

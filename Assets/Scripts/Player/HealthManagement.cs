@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,7 +44,7 @@ public class HealthManagement : MonoBehaviour
 
 	public void AdjustHealth(int amount)
 	{
-		health += amount;
+		health = Math.Min(health + amount, maxHealth);
 		Debug.Log("Health: " + health);
 		rs.SetUnits(health);
 		if (IsDead())
