@@ -6,12 +6,6 @@ public class Shotgun : Gun {
     
     [SerializeField] public GameObject Bullet;
     
-    new void Start()
-    {
-        base.Start();
-        FireRate = 0.66f;
-    }
-    
     protected override void Shoot()
     {
         Vector2 dir = Vector2.ClampMagnitude(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")), 1);

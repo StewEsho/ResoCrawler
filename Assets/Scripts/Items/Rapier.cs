@@ -10,10 +10,12 @@ public class Rapier : MonoBehaviour {
 	private Collider2D col;
 	public float SwingRate = 0.5f;
 	public int Damage = 6;
+	private AudioSource audioSource;
 
 	// Use this for initialization
 	void Start ()
 	{
+		audioSource = GetComponent<AudioSource>();
 		col = GetComponent<Collider2D>();
 		anim = GetComponent<Animator>();
 		Debug.Log(anim);
@@ -31,7 +33,8 @@ public class Rapier : MonoBehaviour {
 	{
 		col.enabled = true;
 		canAttack = false;
-		anim.Play("Stab");
+		anim.Play("Stab", -1, 0);
+		audioSource.Play();
 		yield return new WaitForSeconds(SwingRate);
 		col.enabled = false;
 		canAttack = true;

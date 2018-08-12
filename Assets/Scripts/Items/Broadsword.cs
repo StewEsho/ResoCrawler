@@ -11,10 +11,12 @@ public class Broadsword : MonoBehaviour
 	private Animator anim;
 	public float SwingRate = 0.5f;
 	public int Damage = 6;
-
+	private AudioSource audioSource;
+	
 	// Use this for initialization
 	void Start ()
 	{
+		audioSource = GetComponent<AudioSource>();
 		col = GetComponent<Collider2D>();
 		anim = GetComponentInChildren<Animator>();
 		Debug.Log(anim);
@@ -24,7 +26,6 @@ public class Broadsword : MonoBehaviour
 	void Update () {
 		if (canAttack && Input.GetButtonDown("Fire"))
 		{
-			col.enabled = true;
 			canAttack = false;
 			StartCoroutine(Attack());
 		}
@@ -32,7 +33,9 @@ public class Broadsword : MonoBehaviour
 
 	IEnumerator Attack()
 	{
-		anim.Play("Swing");
+		col.enabled = true;
+		anim.Play("Swing", -1, 0);
+		audioSource.Play();
 		yield return new WaitForSeconds(SwingRate);
 		col.enabled = false;
 		canAttack = true;
