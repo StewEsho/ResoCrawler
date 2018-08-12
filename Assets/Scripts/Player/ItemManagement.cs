@@ -80,4 +80,13 @@ public class ItemManagement : MonoBehaviour
 		this.chest = chest;
 		nearChest = chest != null;
 	}
+
+	public void ClearInventory()
+	{
+		foreach (var item in inventory)
+		{
+			Destroy(item);
+		}
+		inventory.Clear();
+	}
 }

@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
             sprite.eulerAngles = Vector3.zero;
         else if (dir.x < 0)
             sprite.eulerAngles = 180 * Vector3.up;
+        Debug.Log(dir);
     }
 
     void LateUpdate()
