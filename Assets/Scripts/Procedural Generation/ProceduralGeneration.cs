@@ -89,7 +89,7 @@ public class ProceduralGeneration : MonoBehaviour
             bool intersects = false;
             foreach (Rect r in rooms)
             {
-                if (room.Overlaps(r))
+                if (room.BufferedOverlap(r, 1))
                 {
                     intersects = true;
                     failedAttempts++;

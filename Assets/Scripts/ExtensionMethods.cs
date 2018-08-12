@@ -13,5 +13,11 @@ public static class ExtensionMethods {
 			list[index2] = temp;
 		}
 	}
-	
+
+	public static bool BufferedOverlap(this Rect rect, Rect other, int buffer)
+	{
+		Rect bufferedRect = new Rect(rect.position - (buffer * Vector2.one), rect.size + (2 * buffer * Vector2.one));
+		return bufferedRect.Overlaps(other);
+	}
+
 }
