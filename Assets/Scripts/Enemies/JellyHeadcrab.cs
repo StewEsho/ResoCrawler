@@ -6,12 +6,20 @@ using UnityEngine;
 public class JellyHeadcrab : MonoBehaviour
 {
 	private HealthManagement player;
-	private bool isLunging = false;
+	private bool isLunging;
+	private bool isMoving = true;
 	private Rigidbody2D rb;
+
+	private Vector2 displacement;
+	private float angle;
+	private float angleDiff = 0;
 	
 	// Use this for initialization
 	void Start ()
 	{
+		angle = Random.Range(0, 360);
+//		displacement = new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle));
+		transform.eulerAngles = new Vector3(0, 0, angle);
 		rb = GetComponent<Rigidbody2D>();
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthManagement>();
 	}
@@ -19,9 +27,16 @@ public class JellyHeadcrab : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (isMoving)
+		{
+			rb.AddForce(185 * transform.right, ForceMode2D.Force);
+			angleDiff += Random.value - (0.5f + Mathf.Sign(angleDiff)/20f);
+			transform.Rotate(new Vector3(0, 0, angleDiff));
+		}
 		if (!isLunging && Vector2.Distance(transform.position, player.transform.position) < 7)
 		{
 			isLunging = true;
+			isMoving = false;
 			StartCoroutine(Lunge());
 		}
 	}
@@ -43,11 +58,13 @@ public class JellyHeadcrab : MonoBehaviour
 
 	IEnumerator Lunge()
 	{
-		yield return new WaitForSeconds(2);
 		Vector3 target = player.transform.position;
 		yield return StartCoroutine(RotateToPlayer(target));
 		float forceStrength = 300f * (Vector2.Distance(transform.position, target) / 7);
 		rb.AddForce(forceStrength * transform.right, ForceMode2D.Impulse);
+		yield return new WaitForSeconds(0.25f);
+		isMoving = true;
+		yield return new WaitForSeconds(2);
 		isLunging = false;
 		Debug.Log("Done!");
 	}
