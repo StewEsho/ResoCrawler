@@ -14,10 +14,28 @@ public static class ExtensionMethods {
 		}
 	}
 
+	public static void Shuffle<T>(this List<T> list)
+	{
+		//Fisher-Yates Shuffle
+		int n = list.Count;
+		for (int i = n - 1; i > 1; i--)
+		{
+			int j = Random.Range(0, i + 1);
+			list.Swap(i, j);
+		}
+	}
+
 	public static bool BufferedOverlap(this Rect rect, Rect other, int buffer)
 	{
 		Rect bufferedRect = new Rect(rect.position - (buffer * Vector2.one), rect.size + (2 * buffer * Vector2.one));
 		return bufferedRect.Overlaps(other);
+	}
+
+	public static Vector2 RandomPoint(this Rect rect)
+	{
+		float x = Random.Range(rect.xMin, rect.xMax);
+		float y = Random.Range(rect.yMin, rect.yMax);
+		return new Vector2(x, y);
 	}
 
 }

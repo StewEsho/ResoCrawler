@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 4269471528323008}
   - component: {fileID: 2569400266335106134}
   - component: {fileID: 114537137479222108}
+  - component: {fileID: 114843029716228112}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -121,6 +122,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2f42a1d1d61943f48a3fc76acace9b0a, type: 2}
   mapSize: 100
   numberOfRooms: 20
+--- !u!114 &114843029716228112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1735141796207762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c20fd0368ea4e04281cd47e1f60a25f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chest: {fileID: 1658006342351368, guid: 60152d72c7f35ac4eac747d8be2aa35b, type: 2}
+  chestWeapons:
+  - {fileID: 1953941189762336, guid: 4523bccdd15af094a8df800009241d76, type: 2}
+  - {fileID: 1058170194467850, guid: 0e62cd650fbc2894594d4f0e6cdbee48, type: 2}
+  - {fileID: 1953941189762336, guid: 69d6dcb6e514c1a4db17b06464f23be5, type: 2}
+  - {fileID: 1058170194467850, guid: c1b70128d17369c4b9480fd0aab1f27c, type: 2}
+  chestItems: []
+  ChestCount: 15
 --- !u!19719996 &2113883505998118926
 TilemapCollider2D:
   m_ObjectHideFlags: 1

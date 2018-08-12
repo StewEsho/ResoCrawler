@@ -6,12 +6,13 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(Grid))]
+[RequireComponent(typeof(Grid), typeof(ItemPopulator))]
 public class ProceduralGeneration : MonoBehaviour
 {
     [SerializeField] private Tile[] tiles = new Tile[3];
     [SerializeField] private int mapSize;
     [SerializeField] private int numberOfRooms;
+    private ItemPopulator itemPopulator;
 
     // Use this for initialization
     void Start()
@@ -19,6 +20,7 @@ public class ProceduralGeneration : MonoBehaviour
         Tilemap background = transform.Find("Background").gameObject.GetComponent<Tilemap>(); //messy but w/e
         background.color = Random.ColorHSV(0, 1, 1, 1, 0.75f, 0.75f);
         Tilemap walls = transform.Find("Walls").gameObject.GetComponent<Tilemap>();
+        itemPopulator = GetComponent<ItemPopulator>();
         GenerateMap(mapSize, numberOfRooms, background, walls);
     }
 
@@ -28,6 +30,7 @@ public class ProceduralGeneration : MonoBehaviour
         Debug.Log(rooms[0]);
         int[,] map = CreateTilemapArray(size, rooms);
         rooms = PutCenterRoomFirst(rooms, size);
+        itemPopulator.PopulateRoomsWithChests(rooms);
         rooms.AddRange(ConnectRooms(rooms, map));
         map = CreateTilemapArray(size, rooms);
 
@@ -190,4 +193,6 @@ public class ProceduralGeneration : MonoBehaviour
 
         return newRooms;
     }
+    
+    
 }

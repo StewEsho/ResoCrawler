@@ -57,7 +57,7 @@ public class ItemManagement : MonoBehaviour
 			inventory[i].SetActive(true);
 			index = i;
 		}
-		catch (IndexOutOfRangeException e)
+		catch (ArgumentOutOfRangeException e)
 		{
 			Debug.LogException(e);
 		}
